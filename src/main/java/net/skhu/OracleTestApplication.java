@@ -1,12 +1,29 @@
 package net.skhu;
 
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
-public class OracleTestApplication {
+import net.skhu.mapper.TestMapper;
 
+@SpringBootApplication
+@MapperScan("net.skhu.mapper")
+public class OracleTestApplication implements CommandLineRunner {
+	
+	@Autowired
+	TestMapper testMapper;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(OracleTestApplication.class, args);
 	}
+
+	@Override
+	public void run(String... args) throws Exception {
+		// TODO Auto-generated method stub
+		System.out.println("Time:" + testMapper.getTime());
+		
+	}
+	
 }
